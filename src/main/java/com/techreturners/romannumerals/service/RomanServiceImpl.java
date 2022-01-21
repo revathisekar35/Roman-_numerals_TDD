@@ -8,8 +8,9 @@ public class RomanServiceImpl implements RomanService {
 	private final int MAX_NUM = 3000;
 
 	public String getRomanNumber(int number) {
+
 		StringBuffer sb = new StringBuffer();
-		if (number >= MIN_NUM || number >= MAX_NUM) {
+		if (number >= MIN_NUM && number <= MAX_NUM) {
 			while (number > 0) {
 				if (number <= RomanNumber.THREE.numbericalNumber) {
 					sb.append(RomanNumber.ONE.romanNumber);
