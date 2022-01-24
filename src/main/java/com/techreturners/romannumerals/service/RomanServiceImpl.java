@@ -48,7 +48,7 @@ public class RomanServiceImpl implements RomanService {
 				if(romanMap.get(sb.toString()) != null)
 						numericalNum += romanMap.get(sb.toString());
 				else 
-					throw new Exception("Accepted value range is 1 - 3000 and given roman number doesn't exit");
+					throw new Exception("The given roman number doesn't exit");
 				
 			}
 		}

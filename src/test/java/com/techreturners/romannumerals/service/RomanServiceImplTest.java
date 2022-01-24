@@ -56,10 +56,11 @@ public class RomanServiceImplTest {
 		assertEquals(romanNumber.numbericalNumber, romanService.getNumericalNumberFormRomanNumber(romanNumber.romanNumber));
 	}
 	
-	public void getNumericalNumberFormRomanNumberTestException(RomanNumber romanNumber) throws Exception {
+	@Test
+	public void getNumericalNumberFormRomanNumberTestException() throws Exception {
 		expectedEx.expect(Exception.class);
-		expectedEx.expectMessage("Accepted value range is 1 - 3000 and given roman number doesn't exit");
-		romanService.getNumericalNumberFormRomanNumber("XXXXX");
+		expectedEx.expectMessage("The given roman number doesn't exit");
+		romanService.getNumericalNumberFormRomanNumber("asdf");
 		}
 	
 	@Test
