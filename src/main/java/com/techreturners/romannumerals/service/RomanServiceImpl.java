@@ -25,7 +25,7 @@ public class RomanServiceImpl implements RomanService {
 		return roman.toString();
 	}
 
-	public int getNumericalNumberFormRomanNumber(String roamNumber) {
+	public int getNumericalNumberFormRomanNumber(String roamNumber) throws Exception{
 		Map<String, Integer> romanMap = new HashMap<String, Integer>();
 		String romanNumber = roamNumber.toUpperCase();
 		int numericalNum = 0;
@@ -44,6 +44,12 @@ public class RomanServiceImpl implements RomanService {
 					if (romanMap.get(String.valueOf(romanNumber.charAt(i))) != null)
 						numericalNum += romanMap.get(String.valueOf(romanNumber.charAt(i)));
 				}
+			}else {
+				if(romanMap.get(sb.toString()) != null)
+						numericalNum += romanMap.get(sb.toString());
+				else 
+					throw new Exception("Accepted value range is 1 - 3000 and given roman number doesn't exit");
+				
 			}
 		}
 		return numericalNum;
