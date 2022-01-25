@@ -2,7 +2,7 @@
 
 This is a Java, Maven Project.
 
-Crated UML Diagram.
+Created UML Diagram.
 
 Implemented Oops concept and Junit Test case.
 
