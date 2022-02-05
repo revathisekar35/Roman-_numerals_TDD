@@ -25,32 +25,38 @@ public class RomanServiceImpl implements RomanService {
 		return roman.toString();
 	}
 
-	public int getNumericalNumberFormRomanNumber(String roamNumber) throws Exception{
+	public int getNumericalNumberFormRomanNumber(String roamNumber) throws Exception {
 		Map<String, Integer> romanMap = new HashMap<String, Integer>();
 		String romanNumber = roamNumber.toUpperCase();
 		int numericalNum = 0;
-		for (RomanNumber roamNum : RomanNumber.values()) {
-			romanMap.put(roamNum.romanNumber, roamNum.numbericalNumber);
-		}		
-		for (int i = 0; i < romanNumber.length(); i++) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(romanNumber.charAt(i));
-			if ((i + 1) < romanNumber.length()) {
-				sb.append(romanNumber.charAt(i + 1));
-				if (romanMap.get(sb.toString()) != null) {
-					numericalNum += romanMap.get(sb.toString());
-					i++;
-				} else {
-					if (romanMap.get(String.valueOf(romanNumber.charAt(i))) != null)
-						numericalNum += romanMap.get(String.valueOf(romanNumber.charAt(i)));
-				}
-			}else {
-				if(romanMap.get(sb.toString()) != null)
-						numericalNum += romanMap.get(sb.toString());
-				else 
-					throw new Exception("The given roman number doesn't exit");
-				
+		try {
+			for (RomanNumber roamNum : RomanNumber.values()) {
+				romanMap.put(roamNum.romanNumber, roamNum.numbericalNumber);
 			}
+			for (int i = 0; i < romanNumber.length(); i++) {
+				StringBuilder sb = new StringBuilder();
+				sb.append(romanNumber.charAt(i));
+				if ((i + 1) < romanNumber.length()) {
+					sb.append(romanNumber.charAt(i + 1));
+					if (romanMap.get(sb.toString()) != null) {
+						numericalNum += romanMap.get(sb.toString());
+						i++;
+					} else {
+						if (romanMap.get(String.valueOf(romanNumber.charAt(i))) != null)
+							numericalNum += romanMap.get(String.valueOf(romanNumber.charAt(i)));
+					}
+				} else {
+					if (romanMap.get(sb.toString()) != null)
+						numericalNum += romanMap.get(sb.toString());
+					else
+						throw new Exception("The given roman number doesn't exit");
+
+				}
+			}
+		} catch (NullPointerException ne) {
+			System.out.println("Null pointer exception in getNumericalNumberFormRomanNumber " + ne.getMessage());
+		}catch(Exception e) {
+			System.out.println("Exception occured in getNumericalNumberFormRomanNumber "+e.getMessage());
 		}
 		return numericalNum;
 	}
